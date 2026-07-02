@@ -22,9 +22,7 @@ const projects = [
     title: 'Portfolio Templates', 
     category: 'Web App', 
     demoLink: 'https://akash-ranjan.netlify.app/', 
-    demoLink2: 'https://rchandra.netlify.app/', 
-    image: '/assets/portfoliowebsiteImage.png', 
-    image2: '/assets/secondportfolioImage.png' 
+    image: '/assets/portfoliowebsiteImage.png' 
   },
   { 
     id: 4, 
@@ -46,6 +44,13 @@ const categories = ['All', 'E-commerce', 'Business', 'Web App', 'Landing Page'];
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [lightboxImage, setLightboxImage] = useState(null);
+
+  const openLightbox = (imgSrc) => {
+    if (typeof window !== 'undefined' && window.innerWidth > 768) {
+      setLightboxImage(imgSrc);
+    }
+  };
 
   const filteredProjects = activeCategory === 'All' 
     ? projects 
@@ -94,15 +99,13 @@ export default function Portfolio() {
                 className="glass-panel"
                 style={{ overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
               >
-                <div style={{ height: '200px', display: 'flex', backgroundColor: '#e0e0e0', position: 'relative' }}>
-                  {project.image2 ? (
-                    <>
-                      <img src={project.image} alt={project.title} style={{ width: '50%', height: '100%', objectFit: 'cover', borderRight: '1px solid var(--border-color)' }} />
-                      <img src={project.image2} alt={project.title} style={{ width: '50%', height: '100%', objectFit: 'cover' }} />
-                    </>
-                  ) : (
-                    <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                  )}
+                <div style={{ height: '200px', display: 'flex', backgroundColor: '#e0e0e0', position: 'relative', overflow: 'hidden' }}>
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="portfolio-img"
+                    onClick={() => openLightbox(project.image)}
+                  />
                 </div>
                 
                 <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -113,16 +116,9 @@ export default function Portfolio() {
                   
                   <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {project.demoLink ? (
-                      <>
                         <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ width: '100%' }}>
-                          {project.demoLink2 ? 'Template 1 (Akash)' : 'Live Demo'} <MdOpenInNew />
+                          Live Demo <MdOpenInNew />
                         </a>
-                        {project.demoLink2 && (
-                          <a href={project.demoLink2} target="_blank" rel="noopener noreferrer" className="btn btn-secondary" style={{ width: '100%' }}>
-                            Template 2 (RChandra) <MdOpenInNew />
-                          </a>
-                        )}
-                      </>
                     ) : (
                       <button className="btn" style={{ width: '100%', backgroundColor: 'var(--bg-secondary)', color: 'var(--text-secondary)', cursor: 'not-allowed' }} disabled>
                         Locked <MdLock />
@@ -135,6 +131,26 @@ export default function Portfolio() {
           </AnimatePresence>
         </motion.div>
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="lightbox-overlay"
+            onClick={() => setLightboxImage(null)}
+          >
+            <div className="lightbox-content" onClick={e => e.stopPropagation()}>
+              <button className="lightbox-close" onClick={() => setLightboxImage(null)}>
+                &times;
+              </button>
+              <img src={lightboxImage} alt="Enlarged Portfolio" className="lightbox-img" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

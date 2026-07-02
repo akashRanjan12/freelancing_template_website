@@ -67,7 +67,7 @@ export default function Hero() {
             I specialize in creating ultra-responsive, beautiful, and animated websites tailored for businesses and startups.
           </p>
           
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
+          <div className="hero-btns">
             <a href="#portfolio" className="btn btn-primary" style={{ padding: '16px 32px', fontSize: '16px' }}>View My Work</a>
             <a href="#contact" className="btn btn-secondary" style={{ padding: '16px 32px', fontSize: '16px', backgroundColor: 'var(--bg-primary)' }}>Contact Me</a>
           </div>
