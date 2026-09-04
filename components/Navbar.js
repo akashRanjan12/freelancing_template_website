@@ -37,13 +37,8 @@ export default function Navbar({ theme, toggleTheme }) {
       }}
     >
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', fontSize: '24px', fontWeight: '700', color: 'var(--text-primary)' }}>
-          <img 
-            src="/logo.png" 
-            alt="Logo" 
-            style={{ height: '34px', width: 'auto', objectFit: 'contain', borderRadius: '4px' }} 
-          />
-          <span>Sky<span style={{ color: 'var(--accent-color)' }}>.</span></span>
+        <a href="#" style={{ fontSize: '24px', fontWeight: '700', color: 'var(--text-primary)' }}>
+          Sky<span style={{ color: 'var(--accent-color)' }}>.</span>
         </a>
 
         {/* Desktop Nav */}
