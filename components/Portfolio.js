@@ -8,63 +8,63 @@ const projects = [
     title: 'Salon Website', 
     category: 'Beauty & Salon', 
     demoLink: 'https://precious-salon.netlify.app/', 
-    image: '/assets/salon-website.png' 
+    image: '/assets/salon-website.webp' 
   },
   { 
     id: 2, 
     title: 'Spa Salon', 
     category: 'Beauty & Salon', 
     demoLink: 'https://womenspasalon.netlify.app/', 
-    image: '/assets/spa-salon.png' 
+    image: '/assets/spa-salon.webp' 
   },
   { 
     id: 3, 
     title: "Men's Salon", 
     category: "Beauty & Salon", 
     demoLink: 'https://haircutmensalon.netlify.app/', 
-    image: '/assets/mens-salon.png' 
+    image: '/assets/mens-salon.webp' 
   },
   { 
     id: 4, 
     title: 'Fitness Gym', 
     category: 'Gym', 
     demoLink: 'https://fitnesssgym.netlify.app/', 
-    image: '/assets/fitness-gym.png' 
+    image: '/assets/fitness-gym.webp' 
   },
   { 
     id: 5, 
     title: 'Iron Gym', 
     category: 'Gym', 
     demoLink: 'https://demoirongym.netlify.app/', 
-    image: '/assets/gymewebsiteImage.png' 
+    image: '/assets/gymewebsiteImage.webp' 
   },
   { 
     id: 6, 
     title: 'Coffee Shop', 
     category: 'Cafe', 
     demoLink: 'https://democoffees.netlify.app/', 
-    image: '/assets/coffeewebsiteImage.png' 
+    image: '/assets/coffeewebsiteImage.webp' 
   },
   { 
     id: 7, 
     title: 'Organic E-Commerce', 
     category: 'E-Commerce', 
     demoLink: 'https://organic-prod.netlify.app/', 
-    image: '/assets/-commercewebInmage.png' 
+    image: '/assets/-commercewebInmage.webp' 
   },
   { 
     id: 8, 
     title: 'Portfolio Templates', 
     category: 'Portfolio', 
     demoLink: 'https://akash-ranjan.netlify.app/', 
-    image: '/assets/portfoliowebsiteImage.png' 
+    image: '/assets/portfoliowebsiteImage.webp' 
   },
   { 
     id: 9, 
     title: 'Music App UI', 
     category: 'Web App', 
     demoLink: null, 
-    image: '/assets/musicebsiteImage.png' 
+    image: '/assets/musicebsiteImage.webp' 
   },
 ];
 
@@ -133,6 +133,11 @@ export default function Portfolio() {
                     alt={project.title} 
                     className="portfolio-img"
                     onClick={() => openLightbox(project.image)}
+                    onError={(e) => {
+                      if (e.target.src.endsWith('.webp')) {
+                        e.target.src = e.target.src.replace('.webp', '.png');
+                      }
+                    }}
                   />
                 </div>
                 
