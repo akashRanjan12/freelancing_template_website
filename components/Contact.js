@@ -9,7 +9,7 @@ const PHONE_NUMBER = '919508009054';
 const EMAIL = 'akash12ranjan@gmail.com';
 
 // Actual Google Cloud Client ID
-const GOOGLE_CLIENT_ID = '130344833703-m2n1vbmvgijicf6h2b0sna2nk83cohes.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = '866654168622-rjhur8jgrqvd92nu8q2kicdmtvp1md1k.apps.googleusercontent.com';
 
 export default function Contact() {
   const [userEmail, setUserEmail] = useState('');
@@ -124,6 +124,13 @@ export default function Contact() {
             className="glass-panel"
             style={{ padding: '64px 32px', textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}
           >
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+              <img 
+                src="/logo.png" 
+                alt="Logo" 
+                style={{ height: '52px', width: 'auto', objectFit: 'contain' }} 
+              />
+            </div>
             <h2 className="section-title" style={{ marginBottom: '16px' }}>Let's Work Together</h2>
             <p style={{ color: 'var(--text-secondary)', marginBottom: '40px', fontSize: '18px' }}>
               Have a project in mind? Let's discuss how we can bring it to life.
@@ -201,6 +208,13 @@ export default function Contact() {
             display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
           }}>
             <div className="glass-panel" style={{ padding: '32px', width: '100%', maxWidth: '400px', textAlign: 'center' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '12px' }}>
+                <img 
+                  src="/logo.png" 
+                  alt="Logo" 
+                  style={{ height: '44px', width: 'auto', objectFit: 'contain' }} 
+                />
+              </div>
               <h3 style={{ marginBottom: '16px', fontSize: '20px' }}>Sign in with Google</h3>
               <p style={{ color: 'var(--text-secondary)', marginBottom: '24px', fontSize: '14px' }}>
                 We use Google Sign-In to verify your email and prevent spam.

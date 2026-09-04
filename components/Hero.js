@@ -60,6 +60,18 @@ export default function Hero() {
           className="glass-panel"
           style={{ padding: '64px 40px', maxWidth: '800px', backgroundColor: 'rgba(var(--bg-surface-rgb), 0.7)' }}
         >
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            style={{ marginBottom: '20px', display: 'flex', justifyContent: 'center' }}
+          >
+            <img 
+              src="/logo.png" 
+              alt="Hack The Sky Logo" 
+              style={{ height: '72px', width: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 0 16px rgba(255, 60, 60, 0.45))' }} 
+            />
+          </motion.div>
           <h1 style={{ fontSize: 'clamp(40px, 8vw, 80px)', fontWeight: '700', lineHeight: 1.1, marginBottom: '24px', letterSpacing: '-2px' }}>
             Transforming Ideas <br /> Into <span style={{ color: 'var(--accent-color)' }}>Digital Reality</span>.
           </h1>

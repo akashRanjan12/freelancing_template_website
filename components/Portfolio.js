@@ -5,42 +5,35 @@ import { MdLock, MdOpenInNew } from 'react-icons/md';
 const projects = [
   { 
     id: 1, 
-    title: 'Coffee Shop', 
-    category: 'Landing Page', 
-    demoLink: 'https://democoffees.netlify.app/', 
-    image: '/assets/coffeewebsiteImage.png' 
+    title: 'Salon Website', 
+    category: 'Salon Website', 
+    demoLink: 'https://precious-salon.netlify.app/', 
+    image: '/assets/salon-website.png' 
   },
   { 
     id: 2, 
-    title: 'Iron Gym', 
-    category: 'Business', 
-    demoLink: 'https://demoirongym.netlify.app/', 
-    image: '/assets/gymewebsiteImage.png' 
+    title: 'Spa Salon', 
+    category: 'Spa Salon', 
+    demoLink: 'https://womenspasalon.netlify.app/', 
+    image: '/assets/spa-salon.png' 
   },
   { 
     id: 3, 
-    title: 'Portfolio Templates', 
-    category: 'Web App', 
-    demoLink: 'https://akash-ranjan.netlify.app/', 
-    image: '/assets/portfoliowebsiteImage.png' 
+    title: "Men's Salon", 
+    category: "Men's Salon", 
+    demoLink: 'https://haircutmensalon.netlify.app/', 
+    image: '/assets/mens-salon.png' 
   },
   { 
     id: 4, 
-    title: 'Organic E-Commerce', 
-    category: 'E-commerce', 
-    demoLink: 'https://organic-prod.netlify.app/', 
-    image: '/assets/-commercewebInmage.png' 
-  },
-  { 
-    id: 5, 
-    title: 'Music App UI', 
-    category: 'Web App', 
-    demoLink: null, 
-    image: '/assets/musicebsiteImage.png' 
+    title: 'Fitness Gym', 
+    category: 'Fitness Gym', 
+    demoLink: 'https://fitnesssgym.netlify.app/', 
+    image: '/assets/fitness-gym.png' 
   },
 ];
 
-const categories = ['All', 'E-commerce', 'Business', 'Web App', 'Landing Page'];
+const categories = ['All', 'Salon Website', 'Spa Salon', "Men's Salon", 'Fitness Gym'];
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -109,9 +102,12 @@ export default function Portfolio() {
                 </div>
                 
                 <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <span style={{ fontSize: '12px', color: 'var(--accent-color)', fontWeight: '600', textTransform: 'uppercase', marginBottom: '8px' }}>
-                    {project.category}
-                  </span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <span style={{ fontSize: '12px', color: 'var(--accent-color)', fontWeight: '600', textTransform: 'uppercase' }}>
+                      {project.category}
+                    </span>
+                    <img src="/logo.png" alt="Logo" style={{ height: '18px', width: 'auto', objectFit: 'contain', opacity: 0.85 }} />
+                  </div>
                   <h3 style={{ fontSize: '20px', marginBottom: '16px' }}>{project.title}</h3>
                   
                   <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '8px' }}>
