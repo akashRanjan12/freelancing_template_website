@@ -31,9 +31,44 @@ const projects = [
     demoLink: 'https://fitnesssgym.netlify.app/', 
     image: '/assets/fitness-gym.png' 
   },
+  { 
+    id: 5, 
+    title: 'Coffee Shop', 
+    category: 'Landing Page', 
+    demoLink: 'https://democoffees.netlify.app/', 
+    image: '/assets/coffeewebsiteImage.png' 
+  },
+  { 
+    id: 6, 
+    title: 'Iron Gym', 
+    category: 'Business', 
+    demoLink: 'https://demoirongym.netlify.app/', 
+    image: '/assets/gymewebsiteImage.png' 
+  },
+  { 
+    id: 7, 
+    title: 'Portfolio Templates', 
+    category: 'Web App', 
+    demoLink: 'https://akash-ranjan.netlify.app/', 
+    image: '/assets/portfoliowebsiteImage.png' 
+  },
+  { 
+    id: 8, 
+    title: 'Organic E-Commerce', 
+    category: 'E-commerce', 
+    demoLink: 'https://organic-prod.netlify.app/', 
+    image: '/assets/-commercewebInmage.png' 
+  },
+  { 
+    id: 9, 
+    title: 'Music App UI', 
+    category: 'Web App', 
+    demoLink: null, 
+    image: '/assets/musicebsiteImage.png' 
+  },
 ];
 
-const categories = ['All', 'Salon Website', 'Spa Salon', "Men's Salon", 'Fitness Gym'];
+const categories = ['All', 'Salon Website', 'Spa Salon', "Men's Salon", 'Fitness Gym', 'E-commerce', 'Business', 'Web App', 'Landing Page'];
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('All');

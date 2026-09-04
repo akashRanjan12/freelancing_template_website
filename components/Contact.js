@@ -6,9 +6,9 @@ import { jwtDecode } from 'jwt-decode';
 
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxe9p741JdjJ_zAZP_MOlSbgkHnH00oP7h6TgJ4Kq5lwO52xPTBTtRpHlqKDSytLZCH/exec';
 const PHONE_NUMBER = '919508009054';
-const EMAIL = 'akash12ranjan@gmail.com';
+const EMAIL = 'gravityanti87@gmail.com';
 
-// Actual Google Cloud Client ID
+// Actual Google Cloud Client ID for gravityanti87@gmail.com
 const GOOGLE_CLIENT_ID = '866654168622-rjhur8jgrqvd92nu8q2kicdmtvp1md1k.apps.googleusercontent.com';
 
 export default function Contact() {
