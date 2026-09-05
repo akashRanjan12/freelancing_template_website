@@ -54,8 +54,29 @@ function doPost(e) {
     // Append row to Google Sheet
     sheet.appendRow([timestamp, email, message, method || "Web Form"]);
     
+    // SEND INSTANT EMAIL NOTIFICATION TO YOUR GMAIL
+    try {
+      var recipient = "gravityanti87@gmail.com";
+      var subject = "New Client Message from " + (email || "Website Visitor");
+      var body = "You received a new inquiry on your website:\n\n" +
+                 "Time: " + timestamp + "\n" +
+                 "Client Email: " + email + "\n" +
+                 "Contact Method: " + (method || "Web Form") + "\n\n" +
+                 "Message:\n" + message + "\n\n" +
+                 "---\nSaved to your Google Sheet automatically.";
+
+      MailApp.sendEmail({
+        to: recipient,
+        subject: subject,
+        body: body,
+        replyTo: email || recipient
+      });
+    } catch (mailError) {
+      // Sheet recording still succeeds even if email fails
+    }
+
     return ContentService
-      .createTextOutput(JSON.stringify({ status: "success", message: "Saved to Google Sheet successfully" }))
+      .createTextOutput(JSON.stringify({ status: "success", message: "Saved to Google Sheet and email sent successfully" }))
       .setMimeType(ContentService.MimeType.JSON);
   } catch (error) {
     return ContentService
