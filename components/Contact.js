@@ -100,8 +100,8 @@ export default function Contact() {
         })
       });
 
-      // Execute both requests concurrently
-      await Promise.all([appsScriptPromise, web3FormsPromise]);
+      // Execute both requests concurrently with graceful error handling
+      await Promise.allSettled([appsScriptPromise, web3FormsPromise]);
       
       setStatus('success');
       setMessage('');
