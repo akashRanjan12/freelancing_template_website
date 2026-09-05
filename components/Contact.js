@@ -4,7 +4,7 @@ import { MdEmail, MdMessage, MdSend } from 'react-icons/md';
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxe9p741JdjJ_zAZP_MOlSbgkHnH00oP7h6TgJ4Kq5lwO52xPTBTtRpHlqKDSytLZCH/exec';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxa89-8S4l4SVaEc_NgNlBLYyNKjas64OWErlPqEVcf3v7i5LdpM7O20we5xW-qJfOFXA/exec';
 const PHONE_NUMBER = '919508009054';
 const EMAIL = 'gravityanti87@gmail.com';
 
@@ -54,27 +54,46 @@ export default function Contact() {
       return;
     }
 
+    // Prepare log data for Google Sheet
+    const formData = new URLSearchParams();
+    formData.append('email', userEmail);
+    formData.append('message', message);
+    formData.append('method', method);
+
     if (method === 'whatsapp') {
+      // Record to Google Sheet in background
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+      }).catch(err => console.error(err));
+
       const waUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(`Hi Akash, I'm reaching out from your client website.\nMy Email: ${userEmail}\nMessage: ${message}`)}`;
       window.open(waUrl, '_blank');
+      setMessage('');
       return;
     }
 
     if (method === 'mailto') {
+      // Record to Google Sheet in background
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+      }).catch(err => console.error(err));
+
       const mailUrl = `mailto:${EMAIL}?subject=Client Website Contact&body=${encodeURIComponent(`Message: ${message}\nFrom: ${userEmail}`)}`;
       window.open(mailUrl, '_blank');
+      setMessage('');
       return;
     }
 
     setStatus('loading');
     try {
-      const formData = new URLSearchParams();
-      formData.append('email', userEmail);
-      formData.append('message', message);
-      formData.append('method', method);
-
-      // Google Apps Script Call
-      const appsScriptPromise = fetch(GOOGLE_SCRIPT_URL, {
+      // Google Apps Script Call (saves record to Google Sheet)
+      await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: {
@@ -83,33 +102,13 @@ export default function Contact() {
         body: formData.toString()
       });
 
-      // Web3Forms Call (Direct to Email)
-      const web3FormsPromise = fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: 'd09bbdca-783b-4ce7-9f5f-fa2a3b76248e',
-          email: userEmail,
-          message: message,
-          from_name: 'Client Website',
-          subject: 'New Direct Message from Client Website',
-          botcheck: false
-        })
-      });
-
-      // Execute both requests concurrently with graceful error handling
-      await Promise.allSettled([appsScriptPromise, web3FormsPromise]);
-      
       setStatus('success');
       setMessage('');
-      setTimeout(() => setStatus(''), 3000);
+      setTimeout(() => setStatus(''), 4000);
     } catch (err) {
       console.error(err);
       setStatus('error');
-      setTimeout(() => setStatus(''), 3000);
+      setTimeout(() => setStatus(''), 4000);
     }
   };
 

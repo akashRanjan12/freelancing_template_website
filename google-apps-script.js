@@ -13,8 +13,8 @@
  *    - Execute as: "Me (gravityanti87@gmail.com)"
  *    - Who has access: "Anyone" (VERY IMPORTANT: must be "Anyone", NOT "Only myself")
  * 8. Click "Deploy" -> Click "Authorize access" -> Choose your Google account -> Click "Advanced" -> "Go to Untitled project (unsafe)" -> Click "Allow"
- * 9. Copy the "Web app URL" (starts with https://script.google.com/macros/s/.../exec)
- * 10. Give that URL to the assistant or paste it into components/Contact.js as GOOGLE_SCRIPT_URL
+ * CURRENT ACTIVE DEPLOYMENT URL:
+ * https://script.google.com/macros/s/AKfycbxa89-8S4l4SVaEc_NgNlBLYyNKjas64OWErlPqEVcf3v7i5LdpM7O20we5xW-qJfOFXA/exec
  */
 
 function doPost(e) {
