@@ -54,13 +54,20 @@ const projects = [
   },
   { 
     id: 8, 
+    title: 'FeeKosh', 
+    category: 'E-Commerce', 
+    demoLink: 'https://feekosh.netlify.app/', 
+    image: '/assets/feekosh.webp' 
+  },
+  { 
+    id: 9, 
     title: 'Portfolio Templates', 
     category: 'Portfolio', 
     demoLink: 'https://akash-ranjan.netlify.app/', 
     image: '/assets/portfoliowebsiteImage.webp' 
   },
   { 
-    id: 9, 
+    id: 10, 
     title: 'Music App UI', 
     category: 'Web App', 
     demoLink: null, 
