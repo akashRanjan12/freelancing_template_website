@@ -92,23 +92,56 @@ export default function Contact() {
 
     setStatus('loading');
     try {
-      // Google Apps Script Call (saves record to Google Sheet)
-      await fetch(GOOGLE_SCRIPT_URL, {
+      // 1. Direct Email Delivery straight to your Gmail inbox via FormSubmit
+      const emailPromise = fetch(`https://formsubmit.co/ajax/${EMAIL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: "Client Website Visitor",
+          email: userEmail,
+          message: message,
+          _subject: `New Client Message from ${userEmail}`,
+          _captcha: 'false',
+          _template: 'table'
+        })
+      });
+
+      // 2. Also save to Google Sheet in background for future records
+      fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: formData.toString()
-      });
+      }).catch(err => console.log('Sheet background log:', err));
+
+      const res = await emailPromise;
+      const data = await res.json().catch(() => ({}));
 
       setStatus('success');
       setMessage('');
-      setTimeout(() => setStatus(''), 4000);
+      setTimeout(() => setStatus(''), 5000);
     } catch (err) {
       console.error(err);
-      setStatus('error');
-      setTimeout(() => setStatus(''), 4000);
+      // Fallback to Google Apps Script if FormSubmit has a network restriction
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: formData.toString()
+        });
+        setStatus('success');
+        setMessage('');
+        setTimeout(() => setStatus(''), 5000);
+      } catch (fallbackErr) {
+        setStatus('error');
+        setTimeout(() => setStatus(''), 5000);
+      }
     }
   };
 
@@ -194,6 +227,11 @@ export default function Contact() {
               </button>
             </div>
             
+            {status === 'success' && (
+              <p style={{ color: '#10B981', marginTop: '16px', fontWeight: '500' }}>
+                Message sent successfully! Check your email inbox.
+              </p>
+            )}
             {status === 'error' && <p style={{ color: '#FF6B6B', marginTop: '16px' }}>Failed to send message. Please try WhatsApp/Email directly.</p>}
 
           </motion.div>
