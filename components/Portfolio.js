@@ -3,79 +3,86 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MdLock, MdOpenInNew } from 'react-icons/md';
 
 const projects = [
+  // 1. E-Commerce Web (First)
   { 
     id: 1, 
-    title: 'Salon Website', 
-    category: 'Beauty & Salon', 
-    demoLink: 'https://precious-salon.netlify.app/', 
-    image: '/assets/salon-website.webp' 
-  },
-  { 
-    id: 2, 
-    title: 'Spa Salon', 
-    category: 'Beauty & Salon', 
-    demoLink: 'https://womenspasalon.netlify.app/', 
-    image: '/assets/spa-salon.webp' 
-  },
-  { 
-    id: 3, 
-    title: "Men's Salon", 
-    category: "Beauty & Salon", 
-    demoLink: 'https://haircutmensalon.netlify.app/', 
-    image: '/assets/mens-salon.webp' 
-  },
-  { 
-    id: 4, 
-    title: 'Fitness Gym', 
-    category: 'Gym', 
-    demoLink: 'https://fitnesssgym.netlify.app/', 
-    image: '/assets/fitness-gym.webp' 
-  },
-  { 
-    id: 5, 
-    title: 'Iron Gym', 
-    category: 'Gym', 
-    demoLink: 'https://demoirongym.netlify.app/', 
-    image: '/assets/gymewebsiteImage.webp' 
-  },
-  { 
-    id: 6, 
-    title: 'Coffee Shop', 
-    category: 'Cafe', 
-    demoLink: 'https://democoffees.netlify.app/', 
-    image: '/assets/coffeewebsiteImage.webp' 
-  },
-  { 
-    id: 7, 
     title: 'Organic E-Commerce', 
     category: 'E-Commerce', 
     demoLink: 'https://organic-prod.netlify.app/', 
     image: '/assets/-commercewebInmage.webp' 
   },
   { 
-    id: 8, 
+    id: 2, 
     title: 'FeeKosh', 
     category: 'E-Commerce', 
     demoLink: 'https://feekosh.netlify.app/', 
     image: '/assets/feekosh.webp' 
   },
+
+  // 2. Portfolio (Second)
   { 
-    id: 9, 
+    id: 3, 
     title: 'Portfolio Templates', 
     category: 'Portfolio', 
     demoLink: 'https://akash-ranjan.netlify.app/', 
     image: '/assets/portfoliowebsiteImage.webp' 
   },
+
+  // 3. Web App (Third)
   { 
-    id: 10, 
+    id: 4, 
     title: 'Music App UI', 
     category: 'Web App', 
     demoLink: null, 
     image: '/assets/musicebsiteImage.webp' 
   },
+
+  // 4. Others (Beauty & Salon, Gym, Cafe)
+  { 
+    id: 5, 
+    title: 'Salon Website', 
+    category: 'Beauty & Salon', 
+    demoLink: 'https://precious-salon.netlify.app/', 
+    image: '/assets/salon-website.webp' 
+  },
+  { 
+    id: 6, 
+    title: 'Spa Salon', 
+    category: 'Beauty & Salon', 
+    demoLink: 'https://womenspasalon.netlify.app/', 
+    image: '/assets/spa-salon.webp' 
+  },
+  { 
+    id: 7, 
+    title: "Men's Salon", 
+    category: "Beauty & Salon", 
+    demoLink: 'https://haircutmensalon.netlify.app/', 
+    image: '/assets/mens-salon.webp' 
+  },
+  { 
+    id: 8, 
+    title: 'Fitness Gym', 
+    category: 'Gym', 
+    demoLink: 'https://fitnesssgym.netlify.app/', 
+    image: '/assets/fitness-gym.webp' 
+  },
+  { 
+    id: 9, 
+    title: 'Iron Gym', 
+    category: 'Gym', 
+    demoLink: 'https://demoirongym.netlify.app/', 
+    image: '/assets/gymewebsiteImage.webp' 
+  },
+  { 
+    id: 10, 
+    title: 'Coffee Shop', 
+    category: 'Cafe', 
+    demoLink: 'https://democoffees.netlify.app/', 
+    image: '/assets/coffeewebsiteImage.webp' 
+  },
 ];
 
-const categories = ['All', 'Beauty & Salon', 'Gym', 'Cafe', 'E-Commerce', 'Portfolio', 'Web App'];
+const categories = ['All', 'E-Commerce', 'Portfolio', 'Web App', 'Beauty & Salon', 'Gym', 'Cafe'];
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('All');
