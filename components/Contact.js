@@ -92,7 +92,7 @@ export default function Contact() {
 
     setStatus('loading');
     try {
-      // 1. Direct Email Delivery straight to your Gmail inbox via FormSubmit
+      // 1. Direct Email Delivery straight to your Gmail inbox with Sky the Developer branding
       const emailPromise = fetch(`https://formsubmit.co/ajax/${EMAIL}`, {
         method: 'POST',
         headers: {
@@ -100,10 +100,12 @@ export default function Contact() {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          name: "Client Website Visitor",
-          email: userEmail,
-          message: message,
-          _subject: `New Client Message from ${userEmail}`,
+          name: "Sky the Developer",
+          _subject: `🚀 New Message from ${userEmail} | Sky the Developer`,
+          "Website": "Sky the Developer Portfolio",
+          "Authenticated User Email": userEmail,
+          "Message": message,
+          _replyto: userEmail,
           _captcha: 'false',
           _template: 'table'
         })
@@ -120,7 +122,7 @@ export default function Contact() {
       }).catch(err => console.log('Sheet background log:', err));
 
       const res = await emailPromise;
-      const data = await res.json().catch(() => ({}));
+      await res.json().catch(() => ({}));
 
       setStatus('success');
       setMessage('');
@@ -159,28 +161,46 @@ export default function Contact() {
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
               <img 
                 src="/logo.png" 
-                alt="Logo" 
-                style={{ height: '52px', width: 'auto', objectFit: 'contain' }} 
+                alt="Sky Logo" 
+                style={{ height: '56px', width: 'auto', objectFit: 'contain' }} 
               />
             </div>
             <h2 className="section-title" style={{ marginBottom: '16px' }}>Let's Work Together</h2>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '40px', fontSize: '18px' }}>
-              Have a project in mind? Let's discuss how we can bring it to life.
+            <p style={{ color: 'var(--text-secondary)', marginBottom: '32px', fontSize: '18px' }}>
+              Have a project in mind? Reach out to <strong>Sky the Developer</strong>.
             </p>
 
             {!userEmail ? (
               <div style={{ marginBottom: '32px' }}>
-                <p style={{ marginBottom: '16px', fontWeight: '500' }}>Please sign in to send a message directly.</p>
+                <p style={{ marginBottom: '16px', fontWeight: '500' }}>Please sign in with Google to verify your email and message Sky.</p>
                 <button onClick={() => setShowEmailPrompt(true)} className="btn btn-primary" style={{ padding: '12px 24px' }}>
                   Sign in with Google
                 </button>
               </div>
             ) : (
-              <div style={{ marginBottom: '32px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--text-secondary)' }}>
-                <span>Signed in as: <strong>{userEmail}</strong></span>
+              <div style={{ 
+                marginBottom: '32px', 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                gap: '10px', 
+                padding: '8px 18px', 
+                borderRadius: '30px', 
+                backgroundColor: 'rgba(255, 255, 255, 0.05)', 
+                border: '1px solid var(--border-color)',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+              }}>
+                <img 
+                  src="/logo.png" 
+                  alt="Sky Logo" 
+                  style={{ height: '22px', width: 'auto', objectFit: 'contain' }} 
+                />
+                <span style={{ fontSize: '14px', color: 'var(--text-secondary)' }}>
+                  Authenticated ID: <strong style={{ color: 'var(--text-primary)' }}>{userEmail}</strong>
+                </span>
                 <button 
                   onClick={() => { localStorage.removeItem('user_gmail'); setUserEmail(''); }}
-                  style={{ background: 'none', border: 'none', color: 'var(--accent-color)', cursor: 'pointer', textDecoration: 'underline' }}
+                  style={{ background: 'none', border: 'none', color: 'var(--accent-color)', cursor: 'pointer', textDecoration: 'underline', fontSize: '13px', marginLeft: '6px' }}
                 >
                   Change
                 </button>
@@ -207,11 +227,11 @@ export default function Contact() {
 
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <button 
-                onClick={() => sendMessage('app_script')}
+                onClick={() => sendMessage('direct')}
                 className="btn btn-primary"
                 disabled={status === 'loading'}
               >
-                {status === 'loading' ? 'Sending...' : (status === 'success' ? 'Sent!' : <><MdSend /> Send Direct</>)}
+                {status === 'loading' ? 'Sending to Sky...' : (status === 'success' ? 'Sent to Sky!' : <><MdSend /> Send Message to Sky</>)}
               </button>
               <button 
                 onClick={() => sendMessage('whatsapp')}

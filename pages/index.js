@@ -10,8 +10,8 @@ export default function Home({ theme, toggleTheme }) {
   return (
     <div>
       <Head>
-        <title>Akash Ranjan | Web Development Portfolio</title>
-        <meta name="description" content="Professional web development services for the Indian market." />
+        <title>Sky the Developer | Web Development Portfolio</title>
+        <meta name="description" content="Sky the Developer - Professional web development services for businesses and startups." />
         <link rel="icon" type="image/png" href="/logo.png" />
         <link rel="shortcut icon" href="/logo.png" />
         <link rel="apple-touch-icon" href="/logo.png" />
@@ -35,7 +35,7 @@ export default function Home({ theme, toggleTheme }) {
             style={{ height: '48px', width: 'auto', objectFit: 'contain', marginBottom: '8px' }} 
           />
           <div style={{ fontSize: '18px', fontWeight: '700', color: 'var(--text-primary)' }}>
-            Sky<span style={{ color: 'var(--accent-color)' }}>.</span>
+            Sky the Developer<span style={{ color: 'var(--accent-color)' }}>.</span>
           </div>
         </div>
         <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginBottom: '16px' }}>
@@ -46,7 +46,7 @@ export default function Home({ theme, toggleTheme }) {
             LinkedIn
           </a>
         </div>
-        <p style={{ color: 'var(--text-secondary)' }}>&copy; {new Date().getFullYear()} Akash Ranjan. All Rights Reserved.</p>
+        <p style={{ color: 'var(--text-secondary)' }}>&copy; {new Date().getFullYear()} Sky the Developer. All Rights Reserved.</p>
       </footer>
     </div>
   );

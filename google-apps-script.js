@@ -69,14 +69,14 @@ function doPost(e) {
     
     // Send instant email notification to your Gmail
     try {
-      var subject = "🚀 New Client Message from: " + (email || "Website Visitor");
+      var subject = "🚀 New Client Message from: " + (email || "Website Visitor") + " | Sky the Developer";
       var htmlBody = 
         '<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #222; max-width: 600px; padding: 24px; border: 1px solid #e2e8f0; border-radius: 12px; background: #ffffff;">' +
         '<div style="border-bottom: 2px solid #6366f1; padding-bottom: 12px; margin-bottom: 20px;">' +
-        '<h2 style="color: #4f46e5; margin: 0; font-size: 22px;">New Client Message Received</h2>' +
-        '<p style="color: #64748b; margin: 4px 0 0 0; font-size: 14px;">Submitted via your website portfolio contact form</p>' +
+        '<h2 style="color: #4f46e5; margin: 0; font-size: 22px;">Sky the Developer</h2>' +
+        '<p style="color: #64748b; margin: 4px 0 0 0; font-size: 14px;">New Client Message Received via Portfolio</p>' +
         '</div>' +
-        '<p style="margin: 8px 0;"><strong>Sender Email:</strong> <a href="mailto:' + (email || "") + '" style="color: #4f46e5; text-decoration: none;">' + (email || "Not provided") + '</a></p>' +
+        '<p style="margin: 8px 0;"><strong>Client Authenticated Email:</strong> <a href="mailto:' + (email || "") + '" style="color: #4f46e5; text-decoration: none;">' + (email || "Not provided") + '</a></p>' +
         '<p style="margin: 8px 0;"><strong>Date & Time:</strong> ' + timestamp + ' (IST)</p>' +
         '<p style="margin: 8px 0;"><strong>Method:</strong> ' + (method || "Direct Form") + '</p>' +
         '<div style="margin-top: 20px; padding: 16px; background: #f8fafc; border-left: 4px solid #6366f1; border-radius: 4px;">' +
@@ -84,20 +84,21 @@ function doPost(e) {
         '<p style="margin: 0; white-space: pre-wrap; color: #0f172a; font-size: 15px;">' + (message ? message.replace(/</g, "&lt;").replace(/>/g, "&gt;") : "No message text provided.") + '</p>' +
         '</div>' +
         '<div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; font-size: 13px; color: #94a3b8; text-align: center;">' +
-        'This message has also been saved to your Google Sheet database in Google Drive.' +
+        'Sky the Developer Portfolio System' +
         '</div>' +
         '</div>';
 
-      var plainBody = "New Inquiry from: " + (email || "Website Visitor") + "\n" +
+      var plainBody = "New Inquiry for Sky the Developer from: " + (email || "Website Visitor") + "\n" +
+                      "Authenticated Email: " + email + "\n" +
                       "Time: " + timestamp + "\n" +
                       "Contact Method: " + (method || "Direct Form") + "\n\n" +
                       "Message:\n" + message + "\n\n" +
-                      "---\nSaved to your Google Sheet automatically.";
+                      "---\nSky the Developer Portfolio";
 
       // Send via GmailApp (primary) or MailApp (fallback)
       try {
         GmailApp.sendEmail(recipient, subject, plainBody, {
-          name: "Portfolio Contact Form",
+          name: "Sky the Developer",
           htmlBody: htmlBody,
           replyTo: email || recipient
         });
